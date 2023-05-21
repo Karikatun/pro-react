@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { routeConfig } from 'shared/config'
 
-const ApRouter = () => {
+const AppRouter = () => {
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
@@ -16,4 +16,4 @@ const ApRouter = () => {
   )
 }
 
-export default ApRouter
+export default AppRouter;
