@@ -7,4 +7,4 @@ export function classNames(cls: string, mods: Mods, additional: string[]): strin
     Object.keys(mods).filter(key => mods[key])
   ]
     .join(' ')
-}
+};

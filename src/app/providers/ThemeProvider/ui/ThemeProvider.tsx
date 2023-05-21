@@ -21,4 +21,4 @@ const ThemeProvider: FC = ({ children }) => {
   )
 }
 
-export default ThemeProvider
+export default ThemeProvider;
