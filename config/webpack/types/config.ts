@@ -4,7 +4,8 @@ export type WebpackBuildMode = 'production' | 'development';
 export interface WebpackBuildPath {
   entry: string,
   build: string,
-  html: string
+  html: string,
+  src: string
 }
 
 export interface WebpackBuildEnv {

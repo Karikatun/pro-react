@@ -1,4 +1,5 @@
 import { useContext } from "react";
+
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "./ThemeContext";
 
 interface UseThemeResult {
@@ -6,6 +7,7 @@ interface UseThemeResult {
   theme: Theme
 }
 
+// Хук, который возвращает текущую тему и функцию по ее переключению
 export function useTheme(): UseThemeResult {
   const { theme, setTheme } = useContext(ThemeContext);
 

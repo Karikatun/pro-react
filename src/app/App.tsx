@@ -1,13 +1,15 @@
-import { Route, Routes } from 'react-router-dom'
+import { Suspense } from 'react'
+
+import { NavLink, Route, Routes } from 'react-router-dom'
+
+import { MainPage } from 'pages/main'
+import { AboutPage } from 'pages/about'
+
+import { classNames } from 'shared/lib/classNames/classNames'
+
+import { useTheme } from 'app/providers/ThemeProvider'
 
 import './styles/index.scss'
-import { NavLink } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
-import { useTheme } from './theme/useTheme'
-import { classNames } from './helpers/classNames/classNames'
-
-const AboutPage = lazy(() => import('./pages/about/AboutPage'))
-const MainPage = lazy(() => import('./pages/main/MainPage'))
 
 const App = () => {
   const { theme, toggleTheme } = useTheme();
@@ -17,6 +19,7 @@ const App = () => {
       <button onClick={toggleTheme}>Toggle</button>
       <NavLink to='/'>Главная</NavLink>
       <NavLink to='/about'>О сайте</NavLink>
+
       <Suspense fallback={<h1>Loading...</h1>}>
         <Routes>
           <Route path='/' element={<MainPage />} />
