@@ -1,13 +1,9 @@
-import { Suspense } from 'react'
+import { NavLink } from 'react-router-dom'
 
-import { NavLink, Route, Routes } from 'react-router-dom'
-
-import { MainPage } from 'pages/main'
-import { AboutPage } from 'pages/about'
-
-import { classNames } from 'shared/lib/classNames/classNames'
-
+import { AppRouter } from 'app/providers/router'
 import { useTheme } from 'app/providers/ThemeProvider'
+
+import { classNames } from 'shared/lib'
 
 import './styles/index.scss'
 
@@ -20,12 +16,7 @@ const App = () => {
       <NavLink to='/'>Главная</NavLink>
       <NavLink to='/about'>О сайте</NavLink>
 
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/about' element={<AboutPage />} />
-        </Routes>
-      </Suspense>
+      <AppRouter />
     </div>
   )
 }
