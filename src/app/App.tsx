@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom'
-
 import { AppRouter } from 'app/providers/router'
 import { useTheme } from 'app/providers/ThemeProvider'
+
+import { Navbar } from 'widgets/Navbar'
 
 import { classNames } from 'shared/lib'
 
@@ -12,11 +12,9 @@ const App = () => {
 
   return (
     <div className={classNames('app', {}, [theme])}>
-      <button onClick={toggleTheme}>Toggle</button>
-      <NavLink to='/'>Главная</NavLink>
-      <NavLink to='/about'>О сайте</NavLink>
-
+      <Navbar />
       <AppRouter />
+      <button onClick={toggleTheme}>Toggle</button>
     </div>
   )
 }
