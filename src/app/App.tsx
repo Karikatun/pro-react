@@ -2,6 +2,7 @@ import { AppRouter } from 'app/providers/router'
 import { useTheme } from 'app/providers/ThemeProvider'
 
 import { Navbar } from 'widgets/Navbar'
+import { Sidebar } from 'widgets/Sidebar'
 
 import { classNames } from 'shared/lib'
 
@@ -13,8 +14,10 @@ const App = () => {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Navbar />
-      <AppRouter />
-      <button onClick={toggleTheme}>Toggle</button>
+      <div className='content-page'>
+        <Sidebar />
+        <AppRouter />
+      </div>
     </div>
   )
 }
