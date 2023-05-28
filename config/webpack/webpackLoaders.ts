@@ -4,6 +4,21 @@ import webpack from 'webpack';
 
 // Конфиг лоадеров вебпака
 export function webpackLoaders({ isDev }: WebpackBuildOptions): webpack.RuleSetRule[] {
+  const svgLoader = {
+    test: /\.svg$/i,
+    issuer: /\.[jt]sx?$/,
+    use: ['@svgr/webpack'],
+  };
+
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|woff|woff2)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+      },
+    ],
+  }
+
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -30,5 +45,5 @@ export function webpackLoaders({ isDev }: WebpackBuildOptions): webpack.RuleSetR
     exclude: /node_modules/,
   };
 
-  return [ typescriptLoader, cssLoader ]
+  return [ fileLoader, svgLoader, typescriptLoader, cssLoader ]
 }
