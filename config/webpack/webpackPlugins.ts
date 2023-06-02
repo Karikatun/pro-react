@@ -15,6 +15,10 @@ export function webpackPlugins({ paths }: WebpackBuildOptions): webpack.WebpackP
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
       chunkFilename: 'css/[name].[contenthash:8].css',
-    })
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+      'IS_DEV': process.env.MODE === 'development'
+    }),
   ]
 }

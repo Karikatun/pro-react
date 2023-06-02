@@ -1,9 +1,13 @@
-import { WebpackBuildEnv, WebpackBuildPath } from './config/webpack/types/config';
 import webpack from 'webpack';
-import { buildWebpackConfig } from "./config/webpack/buildConfig";
 import path from 'path';
+import { config as dotenvConfig } from 'dotenv';
 
-export default (env: WebpackBuildEnv) => {
+import { WebpackBuildPath, WebpackBuildMode } from './config/webpack/types/config';
+import { buildWebpackConfig } from "./config/webpack/buildConfig";
+
+export default () => {
+  dotenvConfig({ path: './.env' })
+
   const paths: WebpackBuildPath = {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     build: path.resolve(__dirname, 'build'),
@@ -11,14 +15,14 @@ export default (env: WebpackBuildEnv) => {
     src: path.resolve(__dirname, 'src')
   };
   
-  const mode = env.mode || 'development';
-  const PORT = env.port || 3000;
-  
+  const mode = (process.env.MODE as WebpackBuildMode) || 'development';
+  const PORT = process.env.PORT || 3000;
+
   const config: webpack.Configuration = buildWebpackConfig({
     mode,
     paths,
-    isDev: mode === 'development',
-    port: PORT
+    isDev: process.env.MODE === 'development',
+    port: +PORT
   });
 
   return config;

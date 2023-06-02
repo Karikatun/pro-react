@@ -1,4 +1,3 @@
-import path from 'path';
 import webpack from 'webpack';
 import { webpackDevServer } from './devServer';
 
@@ -14,6 +13,7 @@ export function buildWebpackConfig(options: WebpackBuildOptions): webpack.Config
 
   return {
     mode,
+    cache: !isDev,
     entry: paths.entry,
     output: {
       filename: '[name].[contenthash].js',

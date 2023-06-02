@@ -15,3 +15,12 @@ declare module "*.svg" {
 declare module "*.png";
 declare module "*.jpg";
 declare module "*.jpeg";
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    MODE: 'development' | 'production';
+    PORT: string;
+  }
+}
+
+declare const IS_DEV: boolean;
