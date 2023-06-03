@@ -1,49 +1,62 @@
-import { WebpackBuildOptions } from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
+
+import { WebpackBuildOptions } from './types/config';
 
 // Конфиг лоадеров вебпака
 export function webpackLoaders({ isDev }: WebpackBuildOptions): webpack.RuleSetRule[] {
   const svgLoader = {
-    test: /\.svg$/i,
-    issuer: /\.[jt]sx?$/,
-    use: ['@svgr/webpack'],
+    test: /\.svg$/,
+    use: ['@svgr/webpack']
   };
 
-  const fileLoader = {
-    test: /\.(png|jpe?g|gif|woff|woff2)$/i,
-    use: [
-      {
-        loader: 'file-loader',
-      },
-    ],
-  }
+  const babelLoader = {
+    test: /\.(js|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: { presets: ['@babel/preset-env'] }
+    }
+  };
 
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      // Creates `style` nodes from JS strings
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
           modules: {
             auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-            localIdentName: isDev 
-              ? '[path][name]__[local]-[hash:base64:5]'
-              : '[hash:base64:8]'
+            localIdentName: isDev ?
+              '[path][name]__[local]--[hash:base64:5]' :
+              '[hash:base64:8]'
           }
         }
       },
-      "sass-loader",
-    ],
+      'sass-loader'
+    ]
   };
 
+  // Если не используем тайпскрипт - нужен babel-loader
   const typescriptLoader = {
     test: /\.tsx?$/,
     use: 'ts-loader',
-    exclude: /node_modules/,
+    exclude: /node_modules/
   };
 
-  return [ fileLoader, svgLoader, typescriptLoader, cssLoader ]
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+    use: [
+      { loader: 'file-loader' }
+    ]
+  };
+
+  return [
+    fileLoader,
+    svgLoader,
+    babelLoader,
+    typescriptLoader,
+    cssLoader
+  ];
 }

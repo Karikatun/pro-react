@@ -1,4 +1,3 @@
-
 export type WebpackBuildMode = 'production' | 'development';
 
 export interface WebpackBuildPath {

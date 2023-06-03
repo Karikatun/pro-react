@@ -1,27 +1,27 @@
-import webpack from 'webpack'
+import webpack from 'webpack';
 
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-
 import { WebpackBuildOptions } from './types/config';
+
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // Конфиг плагинов вебпака
 export function webpackPlugins({ paths, isDev }: WebpackBuildOptions): webpack.WebpackPluginInstance[] {
   return [
-    new HtmlWebpackPlugin({
-      template: paths.html
-    }),
+    new HtmlWebpackPlugin({ template: paths.html }),
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].css'
     }),
     new webpack.DefinePlugin({
-      "process.env": JSON.stringify(process.env),
-      'IS_DEV': process.env.MODE === 'development'
+      'process.env': JSON.stringify(process.env),
+      IS_DEV: process.env.MODE === 'development'
     }),
+    // new BundleAnalyzerPlugin(),
     ...(isDev ? [new ReactRefreshWebpackPlugin()] : [])
-  ]
+  ];
 }

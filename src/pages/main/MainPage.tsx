@@ -5,7 +5,7 @@ const MainPage = () => {
 
   return (
     <div>{t('mainPage.title')}</div>
-  )
-}
+  );
+};
 
 export default MainPage;
