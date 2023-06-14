@@ -37,7 +37,7 @@ module.exports = {
     'import/order': [2, { groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'] }], // устанавливает порядок импортов в соответствии с groups
     'sort-imports': ['error', { ignoreCase: true, allowSeparatedGroups: true }], // устанавливает порядок импорта модулей, игнорирует регистр, пустая строка, строка комментария или строка с любым другим оператором после оператора декларации импорта сбросит сортировку
     'jsx-quotes': [1, 'prefer-single'], // предупреждает о последовательном использовании двойных или одинарных кавычек в атрибутах JSX, принудительное использование одинарных кавычек
-    'max-len': ['error', { code: 130 }], // запрет использования более 130 символов в строке
+    'max-len': ['error', { code: 130, ignoreComments: true }], // запрет использования более 130 символов в строке
     'import/extensions': [1, { extensions: ['.jsx', '.tsx', '.ts', '.js', '.svg', '.json'] }], // предупреждает об использовании расширений в импортах
     'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx', '.ts', '.js'] }], // предупреждает о расширениях файлов, которые могут содержать JSX, разрешен массив extensions
     'import/no-unresolved': 0, // отключает правило, разрешающее только импорт ES6
