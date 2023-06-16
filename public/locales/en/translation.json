@@ -1,4 +1,7 @@
 {
   "language": "English",
-  "pageNotFound": "Page not found"
+  "pageNotFound": "Page not found",
+  "unexpectedError": "Something went wrong",
+  "updatePage": "Update page",
+  "throwError": "Throw error"
 }
