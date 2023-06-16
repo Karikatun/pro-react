@@ -29,6 +29,6 @@ export function webpackPlugins({ paths, isDev }: WebpackBuildOptions): webpack.W
       ]
     }),
     // new BundleAnalyzerPlugin(),
-    ...(isDev ? [new ReactRefreshWebpackPlugin()] : [])
+    ...(isDev ? [new ReactRefreshWebpackPlugin({ overlay: false })] : [])
   ];
 }
